@@ -1,5 +1,6 @@
 package com.edu.commons;
 import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
@@ -11,10 +12,11 @@ import java.util.Date;
  */
 public class JWTUtil {
     //设置token的有效期：一周
-    private static final long TOKEN_EXPIRE = 7*24*60*60*1000;
+    @Value("${jwt.token.expire}")
+    private static   long token_expire;
     //设置一个密钥\私钥,为了安全需要定期更换
-    private static final String TOKEN_SECRET = "lj115533@#";
-
+    @Value("${jwt.token.sign}")
+    private  static String token_signature;
 
     /**
      * 生成token的方法
@@ -27,7 +29,7 @@ public class JWTUtil {
         //当前时间
         Date now = new Date();
         //租约到期时间
-        long expireTime = now.getTime() + TOKEN_EXPIRE;
+        long expireTime = now.getTime() + token_expire;
         //创建过期时间
         Date exp = new Date(expireTime);
         //生成token
@@ -35,8 +37,8 @@ public class JWTUtil {
                 .setIssuedAt(now) //设置当前时间
                 .setExpiration(exp) //设置过期时间
                 .claim("id", id) // id
-                .claim("name",username) //员工名称
-                .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET) //算法+签名
+                .claim("username",username) //员工名称
+                .signWith(SignatureAlgorithm.HS256, token_signature) //算法+签名
                 .compact();
         return token;
     }
@@ -48,7 +50,7 @@ public class JWTUtil {
         //容器
         Claims claims = null;
         try {
-            claims = Jwts.parser().setSigningKey(TOKEN_SECRET)//设置签名
+            claims = Jwts.parser().setSigningKey(token_signature)//设置签名
                     .parseClaimsJws(token) //设置解析的token
                     .getBody();
         } catch (ExpiredJwtException e) {
@@ -65,28 +67,31 @@ public class JWTUtil {
         return claims;
     }
     /**
-     * 从token中获取员工信息
+     * 从token中获取信息
      * @param
      * @return
      */
-    /*public static Employee parseToken(String token){
+    public static Integer getUserIdByToken(String token){
         //校验token
         Claims claims = validateToken(token);
         //获取id
         Integer id = Integer.valueOf(claims.get("id").toString());
-        //获取员工名称
-        String empName = claims.get("name").toString();
-        Employee employee = new Employee();
-        employee.setEmpId(id);
-        employee.setEmpName(empName);
-        return employee;
+        return id;
+    }
+    public static String getUsernameByToken(String token){
+        //校验token
+        Claims claims = validateToken(token);
+        //获取username
+        String username = claims.get("username").toString();
+        return username;
     }
     public static void main(String[] args) {
-        Employee employee = new Employee();
-        employee.setEmpId(1001);
-        employee.setEmpName("admin");
-        String token = generateToken(employee);
-        System.out.println(token);
-    }*/
+        token_expire = 24*60*1000;
+        token_signature = "acbdefg";
+        String token = generateToken(456,"rose");
+        String username = getUsernameByToken(token);
+        Integer id = getUserIdByToken(token);
+        System.out.println(id+"==="+username);
+    }
 
 }

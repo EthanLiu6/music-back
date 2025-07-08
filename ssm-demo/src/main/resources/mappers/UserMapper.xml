@@ -4,5 +4,8 @@
     <select id="findAll" resultType="com.edu.pojo.User">
         select id,username,password,email from `user`
     </select>
+    <select id="findByAccount" resultType="com.edu.pojo.User">
+        SELECT * from `user` where username=#{account} or phone=#{account} or email=#{phone}
+    </select>
 
 </mapper>

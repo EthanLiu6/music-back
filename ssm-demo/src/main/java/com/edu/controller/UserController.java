@@ -1,8 +1,9 @@
 package com.edu.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.edu.commons.R;
+import com.edu.pojo.User;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ProjectName: music-project
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author: Administrator
  * @Description: 演示控制器
  */
+@Slf4j
 @RestController //返回数据
 @RequestMapping("/api/user") //以及目录
 public class UserController {

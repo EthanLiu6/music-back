@@ -9,4 +9,11 @@ import java.util.List;
 public interface UserMapper {
 
     List<User> findAll();
+
+    /**
+     * 根据账户查询用户
+     * @param account  账户
+     * @return 用户对象
+     */
+    User findByAccount(String account);
 }
