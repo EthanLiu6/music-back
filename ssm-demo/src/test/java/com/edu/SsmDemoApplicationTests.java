@@ -1,7 +1,9 @@
 package com.edu;
 
+import com.edu.dto.UserLoginDTO;
 import com.edu.pojo.User;
 import com.edu.service.UserService;
+import com.edu.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,15 @@ class SsmDemoApplicationTests {
     void findAll() {
         List<User> users = userService.findAll();
         log.info("{}",users);
+    }
+
+    @Test
+    void login(){
+        UserLoginDTO userLoginDTO = new UserLoginDTO();
+        userLoginDTO.setAccount("jack");
+        userLoginDTO.setPassword("123456");
+        UserVO userVO = userService.login(userLoginDTO);
+        log.info("{}",userVO);
     }
 
 }

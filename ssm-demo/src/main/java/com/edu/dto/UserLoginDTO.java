@@ -16,6 +16,6 @@ public class UserLoginDTO {
     @NotBlank(message = "登录的用户名或手机号或邮箱不能为空")
     private String account;
     @NotBlank(message = "登录密码不能为空")
-    @Length(min = 6,max = 12,message = "密码长度为{min}-｛max｝位")
+    @Length(min = 6,max = 12,message = "密码长度为{min}-{max}位")
     private String password;
 }

@@ -13,10 +13,10 @@ import java.util.Date;
 public class JWTUtil {
     //设置token的有效期：一周
     @Value("${jwt.token.expire}")
-    private static   long token_expire;
+    private static   long token_expire=3600*24*7;
     //设置一个密钥\私钥,为了安全需要定期更换
     @Value("${jwt.token.sign}")
-    private  static String token_signature;
+    private  static String token_signature="abcdeef";
 
     /**
      * 生成token的方法
