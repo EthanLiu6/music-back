@@ -87,11 +87,11 @@ public class JWTUtil {
     }
     public static void main(String[] args) {
         token_expire = 24*60*1000;
-        token_signature = "acbdefg";
-        String token = generateToken(456,"rose");
+        token_signature = "FightForDream";
+        String token = generateToken(20031220,"EthanLiu");
         String username = getUsernameByToken(token);
         Integer id = getUserIdByToken(token);
-        System.out.println(id+"==="+username);
+        System.out.println(id+": "+username);
     }
 
 }

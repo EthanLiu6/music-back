@@ -18,7 +18,7 @@ class UserTests {
     private UserMapper userMapper;
     @Test
     void login() {
-        User user = userMapper.findByAccount("281958846@qq.com");
+        User user = userMapper.findByAccount("2841958846@qq.com");
         log.info("{}",user);
     }
 
