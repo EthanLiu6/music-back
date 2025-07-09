@@ -20,6 +20,8 @@ spring:
       add-mappings: false  #禁用404错误页面资源映射
 mybatis:
   mapper-locations: classpath:/mappers/*.xml  #指定映射文件的位置
+  configuration:
+    map-underscore-to-camel-case: true  #开启驼峰命名支持
 logging:
   level:
     com.edu: debug  #日志级别
