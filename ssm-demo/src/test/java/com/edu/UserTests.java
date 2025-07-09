@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 //单元测试
 @SpringBootTest
 @Slf4j //lombok的日志注解
@@ -20,6 +22,18 @@ class UserTests {
     void login() {
         User user = userMapper.findByAccount("2841958846@qq.com");
         log.info("{}",user);
+    }
+    
+     @Test
+    void testCountUser() {
+        int count = userMapper.countUser();
+        assertTrue(count >= 0);
+    }
+
+    @Test
+    void testCountSinger() {
+        int count = userMapper.countSinger();
+        assertTrue(count >= 0);
     }
 
 }

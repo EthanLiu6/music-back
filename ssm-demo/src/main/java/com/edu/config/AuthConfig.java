@@ -18,7 +18,7 @@ public class AuthConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new AuthInterceptor())
                 .addPathPatterns("/**") //拦截所有
-                .excludePathPatterns("/api/user/login");//放行
+                .excludePathPatterns("/api/user/login", "/api/home/statistics");//放行
                 //todo 放行注册
     }
 }

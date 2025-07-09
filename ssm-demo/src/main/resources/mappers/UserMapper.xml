@@ -6,6 +6,15 @@
     </select>
     <select id="findByAccount" resultType="com.edu.pojo.User">
         SELECT * from `user` where username=#{account} or phone=#{account} or email=#{phone}
+        -- TODO: 管理员才能登陆(and `role`=0)
     </select>
+
+    <select id="countUser" resultType="int">
+            SELECT COUNT(*) FROM user where `role`=2  -- 2表示用户
+    </select>
+    <select id="countSinger" resultType="int">
+        SELECT COUNT(*) FROM user where `role`=1  -- 1表示歌手
+    </select>
+
 
 </mapper>

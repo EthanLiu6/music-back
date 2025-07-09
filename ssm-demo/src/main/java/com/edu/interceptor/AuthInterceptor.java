@@ -4,6 +4,7 @@ import com.edu.commons.Constants;
 import com.edu.commons.JWTUtil;
 import com.edu.commons.ServiceCode;
 import com.edu.commons.ServiceException;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -23,7 +24,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         String token = request.getHeader(Constants.TOKEN_KEY);
         //判断token是否存在
         if(!StringUtils.hasLength(token)){
-           throw new ServiceException(ServiceCode.ERROR_TOKEN,"token不能为空");
+            throw new ServiceException(ServiceCode.ERROR_TOKEN,"token不能为空");
         }
         //token存在
         //校验token

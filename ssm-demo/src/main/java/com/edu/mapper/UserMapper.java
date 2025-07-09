@@ -16,4 +16,8 @@ public interface UserMapper {
      * @return 用户对象
      */
     User findByAccount(String account);
+
+    Integer countUser();  // 查询用户数量
+
+    Integer countSinger();  // 查询歌手数量
 }
