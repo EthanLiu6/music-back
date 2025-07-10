@@ -20,4 +20,6 @@ public interface UserMapper {
     Integer countUser();  // 查询用户数量
 
     Integer countSinger();  // 查询歌手数量
+
+    String findAdminImageUrl();  // 查询管理员头像（用于和首页看板信息整合接口发送给前端）
 }

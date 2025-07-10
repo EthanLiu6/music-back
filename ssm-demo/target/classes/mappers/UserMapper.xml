@@ -15,6 +15,8 @@
     <select id="countSinger" resultType="int">
         SELECT COUNT(*) FROM user where `role`=1  -- 1表示歌手
     </select>
-
+    <select id="findAdminImageUrl" resultType="java.lang.String">
+        SELECT image_url FROM user WHERE role = 0 LIMIT 1
+    </select>
 
 </mapper>
